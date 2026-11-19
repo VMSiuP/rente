@@ -1,0 +1,341 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Manual · Vinculaciones RENTESEG</title>
+<style>
+:root{--ink:#1f2937;--mut:#64748b;--line:#e2e8f0;--acc:#4f46e5;--acc2:#eef2ff}
+*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:var(--ink);font:15px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(15,23,42,.05)}
+.bar b{font-size:15px}.bar .sp{flex:1}.bar a{display:inline-block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid #d5dbe8;border-radius:9px;padding:6px 12px;font-size:13.5px}.bar a:hover{background:#f1f4fb}.bar a.p{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}.bar a.p:hover{background:#4338ca}
+main{max-width:860px;margin:22px auto;padding:30px 38px 40px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 24px rgba(15,23,42,.07)}
+h1.t{font-size:28px;line-height:1.2;margin:0 0 4px;color:var(--ink)}.ver{color:var(--mut);margin:0 0 18px}
+h2{font-size:20px;margin:34px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--acc2);color:#312e81}h3{font-size:16.5px;margin:22px 0 6px;color:#334155}
+p{margin:8px 0}ul,ol{margin:8px 0;padding-left:26px}li{margin:3px 0}strong{color:#111827}
+table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 16px;font-size:13.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th{background:var(--acc2);color:#312e81;text-align:left;font-weight:650}th,td{padding:8px 12px;vertical-align:top;border-bottom:1px solid var(--line)}tr:last-child td{border-bottom:0}tbody tr:nth-child(even) td{background:#fafbff}
+.pie{margin-top:30px;color:var(--mut);font-size:12.5px;text-align:center}
+@media print{@page{size:A4;margin:16mm 14mm}body{background:#fff;font-size:11.5px}.bar{display:none}main{max-width:none;margin:0;padding:0;border:0;box-shadow:none;border-radius:0}h1.t{font-size:23px}h2{font-size:16px;break-after:avoid;margin-top:22px}h3{break-after:avoid}tr,li{break-inside:avoid}thead{display:table-header-group}table{font-size:11px}th,td{padding:5px 9px}}
+@media(max-width:700px){main{margin:0;border-radius:0;padding:20px 16px}}
+</style></head><body>
+<div class="bar"><svg width="30" height="30" viewBox="0 0 32 32"><line x1="7" y1="24" x2="16" y2="8" stroke="#10b981" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="8" x2="25" y2="24" stroke="#64748b" stroke-width="3" stroke-linecap="round"/><line x1="7" y1="24" x2="25" y2="24" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round"/><circle cx="7" cy="24" r="5.5" fill="#2563eb"/><circle cx="16" cy="8" r="5.5" fill="#9333ea"/><circle cx="25" cy="24" r="5.5" fill="#0d9488"/></svg><b>Vinculaciones RENTESEG · Manual</b><span class="sp"></span><a href="manual.pdf" download>⬇ Descargar PDF</a><a class="p" href="index.html">← Volver a la herramienta</a></div>
+<main>
+<h1 class="t">Guía de uso: Análisis de Vinculaciones RENTESEG</h1>
+<p class="ver">Versión 11 · Noviembre de 2026</p>
+<h2>1. ¿Para qué sirve?</h2>
+<p>Esta herramienta toma los Excel que entrega RENTESEG y los convierte en un gráfico que muestra cómo se relacionan las <strong>líneas telefónicas</strong>, las <strong>personas</strong> (identificadas por su número de documento) y los <strong>equipos</strong> (IMEI). Además, revisa los datos y avisa de situaciones que conviene mirar con atención, por ejemplo un mismo equipo usado con muchas líneas.</p>
+<p>Los avisos son <strong>indicios para revisar</strong>, no conclusiones. Siempre deben contrastarse con los documentos originales.</p>
+<h2>2. Antes de empezar</h2>
+<ul>
+<li><strong>No necesita instalación ni internet.</strong> Es un solo archivo (.html). Se abre con doble clic en cualquier navegador (Chrome, Edge, Firefox).</li>
+<li><strong>Sus datos no salen de su computadora.</strong> La herramienta no los envía a ningún sitio ni los guarda. Si cierra o recarga la página, se pierden. Por eso conviene exportar el Excel antes de cerrar.</li>
+<li><strong>Acepta archivos .xlsx y .xls</strong> de tres tipos de consulta de RENTESEG. La herramienta reconoce cada tipo por sus encabezados, así que no hay que indicárselo, y puede cargarlos mezclados:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Excel</th>
+<th>Qué aporta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consulta Servicios Móviles (por DNI o por línea)</td>
+<td>Qué líneas tiene cada documento, de qué operador y desde cuándo</td>
+</tr>
+<tr>
+<td>Consulta Terminales Móviles</td>
+<td>Reportes de bloqueo de IMEI (por ejemplo, por robo o pérdida)</td>
+</tr>
+<tr>
+<td>Consulta Lista Vinculaciones (por DNI o por IMEI)</td>
+<td>Qué IMEI se usó con qué línea y en qué fecha</td>
+</tr>
+</tbody>
+</table>
+<h3>Instalarla como aplicación (opcional)</h3>
+<p>La pestaña del navegador muestra un icono propio (tres puntos conectados) para reconocer la herramienta entre otras pestañas.</p>
+<p>Si la herramienta está publicada en una dirección web (por ejemplo, en GitHub Pages), Chrome y Edge pueden instalarla como una aplicación. Cuando eso es posible, aparece el botón <strong>⬇ Instalar</strong> en la parte superior. Al pulsarlo, la herramienta queda con su propio icono, se abre en su propia ventana y sigue funcionando <strong>sin internet</strong>.</p>
+<p>Si el botón no aparece (por ejemplo, en Firefox o Safari, o si abrió el archivo con doble clic desde su computadora), puede guardarla en favoritos con <strong>Ctrl + D</strong> (en Mac, <strong>Cmd + D</strong>). Si trabaja con el archivo guardado en su computadora, ya funciona sin internet y no necesita instalarse.</p>
+<h2>3. Paso a paso</h2>
+<ol>
+<li>Abra el archivo de la herramienta en su navegador.</li>
+<li>Pulse <strong>📂 Cargar Excel</strong> y elija uno o varios archivos. También puede arrastrarlos a la ventana.</li>
+<li>En el panel de la izquierda aparece cada archivo, con su tipo y la cantidad de registros leídos.</li>
+<li>En el centro se dibuja el gráfico, y bajo los archivos aparece la lista de <strong>Hallazgos</strong>.</li>
+<li>Haga clic en un hallazgo: sus elementos quedan resaltados en el gráfico.</li>
+<li>Haga clic en un círculo, cuadrado o rombo del gráfico para ver sus detalles.</li>
+<li>Cuando termine, pulse <strong>Excel</strong> para guardar el análisis (ver sección 8).</li>
+<li>Para empezar un caso nuevo, pulse <strong>Limpiar</strong>.</li>
+</ol>
+<p>Puede cargar más archivos en cualquier momento: se suman a los que ya están. Si un mismo registro aparece en dos archivos, se cuenta una sola vez.</p>
+<p>Para ir directo a un DNI, IMEI o línea, use el cuadro de búsqueda (ver sección 4).</p>
+<h2>4. Los controles de la parte superior</h2>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>📂 Cargar Excel</strong></td>
+<td>Abre uno o varios archivos</td>
+</tr>
+<tr>
+<td><strong>🔍 Buscar</strong></td>
+<td>Ubica un DNI, IMEI o línea en el gráfico, en la lista de hallazgos y en la línea de tiempo (ver más abajo)</td>
+</tr>
+<tr>
+<td><strong>Ventana (h)</strong></td>
+<td>Horas que se usan para detectar cambios rápidos y ráfagas de activación. Viene en 24</td>
+</tr>
+<tr>
+<td><strong>Líneas por DNI ≥</strong></td>
+<td>Desde cuántas líneas a nombre de un mismo documento se avisa. Viene en 5</td>
+</tr>
+<tr>
+<td><strong>solo hallazgos</strong></td>
+<td>Deja visibles solo los elementos con aviso y los que están conectados con ellos</td>
+</tr>
+<tr>
+<td><strong>etiquetas</strong></td>
+<td>Muestra u oculta los textos del gráfico</td>
+</tr>
+<tr>
+<td><strong>Líneas / DNI / IMEI</strong></td>
+<td>Muestra u oculta cada tipo de elemento</td>
+</tr>
+<tr>
+<td><strong>📘 Manual</strong></td>
+<td>Abre este manual en otra pestaña o descarga el PDF</td>
+</tr>
+<tr>
+<td><strong>⬇ Instalar</strong></td>
+<td>Aparece solo cuando el navegador permite instalar la herramienta como aplicación (ver sección 2)</td>
+</tr>
+<tr>
+<td><strong>⤢ Ajustar</strong></td>
+<td>Encuadra todo el gráfico en la pantalla</td>
+</tr>
+<tr>
+<td><strong>⏱ Línea de tiempo</strong></td>
+<td>Cambia entre el gráfico de relaciones y la línea de tiempo</td>
+</tr>
+<tr>
+<td><strong>PNG / SVG</strong></td>
+<td>Guarda el gráfico como imagen</td>
+</tr>
+<tr>
+<td><strong>Excel</strong></td>
+<td>Guarda el análisis en un libro de Excel</td>
+</tr>
+<tr>
+<td><strong>Limpiar</strong></td>
+<td>Borra todos los datos cargados</td>
+</tr>
+</tbody>
+</table>
+<p>Si cambia <strong>Ventana</strong> o <strong>Líneas por DNI</strong>, los hallazgos se recalculan solos.</p>
+<h3>Buscar un DNI, IMEI o línea</h3>
+<p>El cuadro <strong>Buscar DNI, IMEI o línea</strong>, junto al botón 🔍, ubica un elemento sin recorrer el gráfico. Busca por número, no por nombre.</p>
+<ol>
+<li>Escriba el número completo o una parte (desde 3 caracteres). Los números de línea pueden llevar espacios o el prefijo +51.</li>
+<li>Aparece una lista de coincidencias, con el tipo de cada una. Haga clic en la que busca, o pulse <strong>Enter</strong> para ir a la primera.</li>
+<li>La herramienta lo ubica así:<ul>
+<li>En el gráfico, el elemento se centra y se acerca, aparece un círculo índigo y quedan resaltados él y sus conexiones directas.</li>
+<li>En la lista de Hallazgos, los avisos que lo incluyen se marcan con un borde índigo.</li>
+<li>Se abre el panel de detalle con sus nombres, avisos y registros.</li>
+<li>Si está abierta la línea de tiempo, muestra los hechos de ese elemento. Si no tiene fechas, vuelve al gráfico.</li>
+</ul>
+</li>
+</ol>
+<p>Si el elemento estaba oculto por los controles <strong>Líneas / DNI / IMEI</strong> o <strong>solo hallazgos</strong>, la búsqueda lo vuelve a mostrar. Para quitar el resaltado, borre el texto del cuadro de búsqueda.</p>
+<h2>5. Cómo leer el gráfico</h2>
+<p><strong>Elementos</strong></p>
+<ul>
+<li>🔵 Círculo azul: una <strong>línea</strong> telefónica.</li>
+<li>🟣 Cuadrado morado: un <strong>documento</strong> (DNI u otro).</li>
+<li>🔷 Rombo verde azulado: un <strong>IMEI</strong> (equipo).</li>
+</ul>
+<p><strong>Anillos de alerta</strong></p>
+<ul>
+<li>Anillo <strong>rojo</strong>: hallazgo de severidad alta.</li>
+<li>Anillo <strong>ámbar</strong> (amarillo anaranjado): severidad media.</li>
+<li>Anillo <strong>gris</strong>: severidad baja.</li>
+<li>Sin anillo: el elemento no tiene avisos.</li>
+</ul>
+<p>Los colores de los elementos (azul, morado y verde azulado) no se repiten en los anillos (rojo, ámbar y gris), para que no se confundan. Además, cada hallazgo de la lista lleva una etiqueta escrita: <strong>Alto</strong>, <strong>Medio</strong> o <strong>Bajo</strong>.</p>
+<p><strong>Líneas que unen los elementos</strong></p>
+<table>
+<thead>
+<tr>
+<th>Línea</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gris, continua</td>
+<td>Titular de la línea</td>
+</tr>
+<tr>
+<td>Verde, continua</td>
+<td>IMEI vinculado a una línea</td>
+</tr>
+<tr>
+<td>Gris, discontinua</td>
+<td>IMEI desvinculado de una línea</td>
+</tr>
+<tr>
+<td>Negra, discontinua y gruesa</td>
+<td>IMEI bloqueado en una línea</td>
+</tr>
+<tr>
+<td>Celeste, de puntos</td>
+<td>Persona que reportó el bloqueo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tamaño y grosor:</strong> cuanto más grande es un elemento, más conexiones tiene. Cuanto más gruesa es una línea, más registros la respaldan.</p>
+<p><strong>Moverse por el gráfico:</strong> la rueda del ratón acerca o aleja, y arrastrar mueve la vista. También puede arrastrar un elemento para acomodarlo. Al cargar datos el gráfico se encuadra solo; si se pierde de vista, pulse <strong>⤢ Ajustar</strong> para verlo completo de nuevo.</p>
+<h2>6. Los hallazgos</h2>
+<p>La lista de hallazgos está a la izquierda, ordenada de mayor a menor severidad. Cada uno indica qué se encontró y dónde, con una etiqueta (Alto, Medio o Bajo) y una raya del mismo color a la izquierda.</p>
+<table>
+<thead>
+<tr>
+<th>Hallazgo</th>
+<th>Qué significa</th>
+<th>Cuándo aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMEI compartido entre líneas</td>
+<td>Un mismo equipo se usó con varias líneas</td>
+<td>2 o más líneas (alto desde 4)</td>
+</tr>
+<tr>
+<td>IMEI compartido entre personas</td>
+<td>Un mismo equipo aparece con varios documentos</td>
+<td>2 o más documentos (alto desde 3)</td>
+</tr>
+<tr>
+<td>Línea con varios titulares</td>
+<td>Una misma línea figura a nombre de varios documentos</td>
+<td>2 o más documentos (alto desde 3)</td>
+</tr>
+<tr>
+<td>Línea con muchos IMEI</td>
+<td>Una línea se usó con muchos equipos</td>
+<td>3 o más IMEI (alto desde 6)</td>
+</tr>
+<tr>
+<td>Persona con muchas líneas</td>
+<td>Un documento tiene muchas líneas</td>
+<td>Desde el valor de «Líneas por DNI» (alto desde 10)</td>
+</tr>
+<tr>
+<td>Persona con varios IMEI</td>
+<td>Un documento aparece con varios equipos</td>
+<td>3 o más IMEI (alto desde 6)</td>
+</tr>
+<tr>
+<td>Persona en varios operadores</td>
+<td>Un documento tiene líneas en varias empresas operadoras</td>
+<td>3 o más operadores (alto desde 4)</td>
+</tr>
+<tr>
+<td>Cambio rápido de línea en un IMEI</td>
+<td>Un equipo pasa de una línea a otra en poco tiempo</td>
+<td>Dentro de la «Ventana» en horas</td>
+</tr>
+<tr>
+<td>Cambio rápido de IMEI en una línea</td>
+<td>Una línea pasa de un equipo a otro en poco tiempo</td>
+<td>Dentro de la «Ventana» en horas</td>
+</tr>
+<tr>
+<td>Ráfaga de activaciones</td>
+<td>Un mismo documento activa varias líneas casi a la vez</td>
+<td>3 o más líneas dentro de la «Ventana» (alto desde 6)</td>
+</tr>
+<tr>
+<td>IMEI reportado robado/perdido</td>
+<td>Hay un reporte de bloqueo por sustracción o pérdida</td>
+<td>Severidad baja</td>
+</tr>
+<tr>
+<td>IMEI robado/perdido con vinculación posterior</td>
+<td>Un equipo reportado como robado o perdido fue vinculado a una línea después del reporte</td>
+<td>Severidad alta</td>
+</tr>
+</tbody>
+</table>
+<p>Si un equipo fue <strong>desbloqueado</strong>, solo se cuentan las vinculaciones hechas antes del desbloqueo, y el aviso indica la fecha en que se desbloqueó.</p>
+<p><strong>Casos que no se avisan por ser normales:</strong> las empresas (documentos RUC, o abonados «persona jurídica») no generan los avisos de «Persona con muchas líneas», «Persona con varios IMEI» ni «Persona en varios operadores», porque tener muchas líneas es habitual en ellas. Las vinculaciones marcadas como <strong>desvinculación</strong> tampoco se cuentan como uso vigente.</p>
+<h2>7. La línea de tiempo</h2>
+<p>Muestra, ordenados por fecha, los hechos de un elemento a la vez.</p>
+<ol>
+<li>Pulse <strong>⏱ Línea de tiempo</strong>.</li>
+<li>En la lista desplegable de la parte superior elija un IMEI, una línea o un documento.</li>
+<li>Cada punto es un hecho: 🟢 vinculación, ⚪ desvinculación (gris), ⚫ bloqueo o reporte, 🔵 activación de línea.</li>
+<li>Con la rueda del ratón se acerca o se aleja; arrastrando se mueve; al pasar el cursor sobre un punto aparece el detalle.</li>
+</ol>
+<p>Atajo: al hacer clic en un elemento del gráfico, el panel de detalle tiene un botón <strong>⏱ Línea de tiempo</strong> que abre directamente la de ese elemento. Para volver al gráfico, pulse de nuevo <strong>⏱ Línea de tiempo</strong>.</p>
+<h2>8. Guardar los resultados</h2>
+<ul>
+<li><strong>Excel:</strong> crea un libro con estas hojas: Hallazgos, Nodos, Relaciones, <strong>Cronología</strong> (todos los hechos ordenados por fecha, para anexar a informes) y <strong>Parámetros</strong> (fecha de procesamiento, valores de Ventana y Líneas por DNI, y los archivos de origen).</li>
+<li><strong>PNG:</strong> imagen del gráfico tal como lo ve en pantalla, sobre fondo claro (cómoda para imprimir).</li>
+<li><strong>SVG:</strong> imagen vectorial, para editarla en programas de diseño o ampliarla sin perder calidad.</li>
+</ul>
+<p>Antes de exportar, acomode el gráfico como lo quiere ver. Se guarda la vista actual, y si activó «solo hallazgos» o ocultó algún tipo de elemento, eso también se refleja.</p>
+<h2>9. Cosas que conviene saber</h2>
+<ul>
+<li><strong>Una persona es su número de documento.</strong> Si dos registros tienen el mismo número, son la misma persona, aunque el nombre esté escrito en mayúsculas, minúsculas, con tilde o sin ella, con uno o dos nombres.</li>
+<li><strong>Fechas sin dato.</strong> Si un reporte de bloqueo no trae fecha de bloqueo, se usa la «Fecha Histórico» del propio archivo.</li>
+<li><strong>El reportante cuenta como persona.</strong> Quien reporta un bloqueo aparece en el gráfico, unido al IMEI por una línea celeste de puntos, y su documento se trata como el de cualquier otra persona.</li>
+<li><strong>Los hallazgos orientan, no prueban.</strong> Una alerta indica que algo merece revisión. Un IMEI compartido, por ejemplo, puede tener una explicación normal.</li>
+</ul>
+<h2>10. Si algo no sale como espera</h2>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Qué hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«Sin datos todavía»</td>
+<td>Aún no se cargó ningún archivo, o se pulsó Limpiar</td>
+</tr>
+<tr>
+<td>El archivo no se reconoce</td>
+<td>Verifique que sea una consulta de RENTESEG sin modificar los encabezados, y que sea .xlsx o .xls</td>
+</tr>
+<tr>
+<td>El gráfico está muy cargado</td>
+<td>Active <strong>solo hallazgos</strong>, desmarque <strong>etiquetas</strong>, o apague un tipo de elemento (Líneas, DNI o IMEI)</td>
+</tr>
+<tr>
+<td>Perdí mis datos</td>
+<td>Al cerrar o recargar la página se borran. Vuelva a cargar los Excel y guarde el resultado con <strong>Excel</strong> antes de cerrar</td>
+</tr>
+<tr>
+<td>Quiero empezar de cero</td>
+<td>Pulse <strong>Limpiar</strong></td>
+</tr>
+<tr>
+<td>La búsqueda no encuentra un número</td>
+<td>Se busca solo por número (no por nombre) y desde 3 caracteres. Verifique que ese dato esté en los Excel cargados</td>
+</tr>
+<tr>
+<td>No veo el gráfico completo</td>
+<td>Pulse ⤢ Ajustar para encuadrarlo en la pantalla</td>
+</tr>
+<tr>
+<td>No aparece el botón Instalar</td>
+<td>Solo se ofrece en Chrome o Edge cuando la herramienta está publicada en una dirección web. Si no aparece, guárdela en favoritos con Ctrl + D</td>
+</tr>
+</tbody>
+</table>
+<p class="pie">Vinculaciones RENTESEG · parte de la suite Siu Apps</p>
+</main></body></html>
