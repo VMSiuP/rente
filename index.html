@@ -136,7 +136,7 @@ function analyze(){
   for(const [k,a] of m){a.sort((x,y)=>x.f-y.f);for(let i=1;i<a.length;i++){const p=a[i-1],q=a[i];if(p[other]!==q[other]&&q.f-p.f<=H)
    add(2,tipo,`${T[key]} ${k}: ${p[other]} → ${q[other]} en ${dur(q.f-p.f)} (${fd(q.f)})`,key==='imei'?['I'+k,'L'+p.linea,'L'+q.linea]:['L'+k,'I'+p.imei,'I'+q.imei])}}};
  seq('imei','linea','Cambio rápido de línea en un IMEI');seq('linea','imei','Cambio rápido de IMEI en una línea');
- const bl=new Map();for(const r of S.recs)if(r.t==='T'&&/sustra|perd|robo/i.test(r.mot)&&r.imei&&!/desbloq/i.test(r.oper||'')){const o=bl.get(r.imei);if(!o||(r.f&&(!o.f||r.f<o.f)))bl.set(r.imei,r)}
+ const bl=new Map();for(const r of S.recs)if(r.t==='T'&&/sustra|perd|robo/i.test(((r.mot||'')+' '+(r.oper||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,''))&&r.imei&&!/desbloq/i.test(r.oper||'')){const o=bl.get(r.imei);if(!o||(r.f&&(!o.f||r.f<o.f)))bl.set(r.imei,r)}
  const vI=new Map();for(const r of AC)if(r.t==='V'&&r.imei&&r.f){if(!vI.has(r.imei))vI.set(r.imei,[]);vI.get(r.imei).push(r)}
  const ub=new Map();for(const r of S.recs)if(r.t==='T'&&/desbloq/i.test(r.oper||'')&&r.imei&&r.f){if(!ub.has(r.imei))ub.set(r.imei,[]);ub.get(r.imei).push(r.f)}
  for(const [i,b] of bl){const u=b.f?(ub.get(i)||[]).filter(d=>d>b.f).sort((x,y)=>x-y)[0]:null;const after=b.f?(vI.get(i)||[]).filter(r=>r.f>b.f&&(!u||r.f<u)):[];const du=u?' (desbloqueado '+fd(u)+')':'';
